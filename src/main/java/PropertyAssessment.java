@@ -67,6 +67,10 @@ public class PropertyAssessment implements Comparable<PropertyAssessment> {
                         (word.equals("of") || word.equals("the") ||
                                 word.equals("in") || word.equals("and"))) {
                     titleCase.append(word.toLowerCase()).append(" ");
+                } else if (!titleCase.isEmpty() &&
+                            (word.equals("nw") || word.equals("sw") ||
+                                    word.equals("ne") || word.equals("se"))) {
+                        titleCase.append(word.toUpperCase()).append(" ");
                 } else {
                     // Capitalize first letter, keep rest lowercase
                     titleCase.append(Character.toUpperCase(word.charAt(0)))
