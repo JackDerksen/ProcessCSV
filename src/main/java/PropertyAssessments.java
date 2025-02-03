@@ -34,6 +34,7 @@ public class PropertyAssessments {
             return new Statistics(0, 0, 0, 0, 0, 0);
         }
 
+        // Get a sorted list of assessment values to analyze
         List<Long> values = assessments.stream()
                 .mapToLong(PropertyAssessment::getAssessedValue)
                 .boxed()

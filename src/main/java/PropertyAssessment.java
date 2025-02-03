@@ -26,7 +26,6 @@ public class PropertyAssessment implements Comparable<PropertyAssessment> {
         this.latitude = Double.parseDouble(data[9]);
         this.longitude = Double.parseDouble(data[10]);
 
-        // Handle assessment classes and their percentages
         this.assessmentClasses = new String[]{toTitleCase(data[15]), toTitleCase(data[16]), toTitleCase(data[17])};
         double[] assessmentClassPercentages = new double[]{
                 parsePercentage(data[12]),
@@ -62,13 +61,12 @@ public class PropertyAssessment implements Comparable<PropertyAssessment> {
 
         for (String word : words) {
             if (!word.isEmpty()) {
-                // Skip title casing for specific words if they're not at the start
+                // Title case formatting logic
                 if (!titleCase.isEmpty() &&
                         (word.equals("of") || word.equals("the") ||
                                 word.equals("in") || word.equals("and"))) {
                     titleCase.append(word.toLowerCase()).append(" ");
-                } else if (!titleCase.isEmpty() &&
-                            (word.equals("nw") || word.equals("sw") ||
+                } else if ((word.equals("nw") || word.equals("sw") ||
                                     word.equals("ne") || word.equals("se"))) {
                         titleCase.append(word.toUpperCase()).append(" ");
                 } else {
