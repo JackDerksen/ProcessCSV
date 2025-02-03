@@ -18,7 +18,7 @@ public class ParseCSV {
             // Split the lines, add complete data rows to dataList
             String line;
             while ((line = reader.readLine()) != null) {
-                // Split on the commas that aren't inside parentheses
+                // Split on the commas that aren't inside parentheses (was causing issues otherwise)
                 List<String> fields = new ArrayList<>();
                 StringBuilder currentField = new StringBuilder();
                 boolean insideParens = false;
