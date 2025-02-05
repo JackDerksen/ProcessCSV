@@ -10,8 +10,12 @@ public class PrintReport {
             return;
         }
 
-        String assessmentClasses = Arrays.stream(assessment.getAssessmentClasses())
+        String assessmentClassesWithPercentages = Arrays.stream(assessment.getAssessmentClasses())
                 .filter(c -> c != null && !c.isEmpty())
+                .map(className -> {
+                    double percentage = assessment.getAssessmentClassPercentage(className);
+                    return String.format("%s (%.1f%%)", className, percentage);
+                })
                 .collect(Collectors.joining(", "));
 
         System.out.printf("""
@@ -26,7 +30,7 @@ public class PrintReport {
                 assessment.getAccountNumber(),
                 assessment.getAddress(),
                 assessment.getAssessedValue(),
-                assessmentClasses,
+                assessmentClassesWithPercentages,
                 assessment.getNeighbourhood(),
                 assessment.getLocation()
         );
