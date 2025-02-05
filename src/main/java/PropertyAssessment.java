@@ -12,6 +12,7 @@ public class PropertyAssessment implements Comparable<PropertyAssessment> {
     private final double latitude;
     private final double longitude;
     private final String[] assessmentClasses;
+    private final double[] assessmentClassPercentages;
 
     public PropertyAssessment(String[] data) {
         this.accountNumber = data[0];
@@ -27,7 +28,8 @@ public class PropertyAssessment implements Comparable<PropertyAssessment> {
         this.longitude = Double.parseDouble(data[10]);
 
         this.assessmentClasses = new String[]{toTitleCase(data[15]), toTitleCase(data[16]), toTitleCase(data[17])};
-        double[] assessmentClassPercentages = new double[]{
+
+        this.assessmentClassPercentages = new double[]{
                 parsePercentage(data[12]),
                 parsePercentage(data[13]),
                 parsePercentage(data[14]),
@@ -101,6 +103,15 @@ public class PropertyAssessment implements Comparable<PropertyAssessment> {
     }
 
     public String[] getAssessmentClasses() { return assessmentClasses; }
+
+    public double getAssessmentClassPercentage(String className) {
+        for (int i = 0; i < assessmentClasses.length; i++) {
+            if (className.equals(assessmentClasses[i])) {
+                return assessmentClassPercentages[i];
+            }
+        }
+        return 0.0;  // Return 0 if class not found
+    }
 
     @Override
     public int compareTo(PropertyAssessment o) {
