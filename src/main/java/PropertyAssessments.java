@@ -1,6 +1,7 @@
 package main.java;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class PropertyAssessments {
     private final List<PropertyAssessment> assessments;
@@ -18,6 +19,10 @@ public class PropertyAssessments {
                 .addProperty(assessment);
     }
 
+    public List<PropertyAssessment> getAssessments() {
+        return assessments;
+    }
+
     public PropertyAssessment findByAccountNumber(String accountNumber) {
         return assessments.stream()
                 .filter(p -> p.getAccountNumber().equals(accountNumber))
@@ -31,5 +36,13 @@ public class PropertyAssessments {
 
     public Statistics getCityStatistics() {
         return Statistics.fromProperties(assessments);
+    }
+
+    public Statistics getAssessmentClassStatistics(String assessmentClass) {
+        // Filter properties where the percentage for this class is > 0.
+        List<PropertyAssessment> filteredProperties = assessments.stream()
+                .filter(p -> p.getAssessmentClassPercentage(assessmentClass) > 0)
+                .collect(Collectors.toList());
+        return Statistics.fromProperties(filteredProperties);
     }
 }
