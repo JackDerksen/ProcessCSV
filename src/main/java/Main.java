@@ -23,31 +23,34 @@ public class Main {
                 assessments.addAssessment(new PropertyAssessment(row));
             }
 
-            // Print city-wide statistics
-            PrintReport.printStatistics(
-                    "Descriptive statistics of all property assessments",
-                    assessments.getCityStatistics()
-            );
-
-            // Find property by account number
-            System.out.print("\nFind a property assessment by account number: ");
-            String accountNumber = scanner.nextLine();
-            PrintReport.printPropertyAssessment(
-                    assessments.findByAccountNumber(accountNumber)
-            );
-
-            // Get neighbourhood statistics
-            System.out.print("\nNeighbourhood: ");
-            String neighbourhoodName = scanner.nextLine();
-            Neighbourhood hood = assessments.getNeighbourhood(neighbourhoodName);
+            // Neighbourhood Analysis
+            System.out.print("Please enter a neighbourhood name: ");
+            String hoodName = scanner.nextLine();
+            Neighbourhood hood = assessments.getNeighbourhood(hoodName);
 
             if (hood != null) {
-                PrintReport.printStatistics(
-                        "Statistics of " + neighbourhoodName + " neighbourhood",
-                        hood.getStatistics()
-                );
+                // Get statistics using your existing method which calculates count, min, max, range, mean and median.
+                Statistics hoodStats = hood.getStatistics();
+                System.out.println("There are " + hoodStats.getCount() + " properties in " + hoodName);
+                System.out.printf("The mean value is $%,.2f%n", hoodStats.getMean());
+                System.out.printf("The median value is $%,d%n", hoodStats.getMedian());
             } else {
-                System.out.println("Neighbourhood not found.");
+                System.out.println("Sorry, can't find data for " + hoodName);
+            }
+
+            // Assessment Class Analysis
+            System.out.print("\nPlease enter an assessment class: ");
+            String className = scanner.nextLine();
+            Statistics classStats = assessments.getAssessmentClassStatistics(className);
+
+            if (classStats.getCount() > 0) {
+                // Only print count, min, max, and range
+                System.out.println("There are " + classStats.getCount() + " " + className + " properties in Edmonton");
+                System.out.printf("The min value is $%,d%n", classStats.getMin());
+                System.out.printf("The max value is $%,d%n", classStats.getMax());
+                System.out.printf("The range is $%,d%n", classStats.getRange());
+            } else {
+                System.out.println("Sorry, no properties found for assessment class: " + className);
             }
 
         } catch (IOException e) {

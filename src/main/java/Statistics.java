@@ -46,6 +46,30 @@ public class Statistics {
         );
     }
 
+    public static Statistics forHood(Collection<PropertyAssessment> properties) {
+        if (properties == null || properties.isEmpty()) {
+            return new Statistics(0, 0, 0, 0, 0, 0);
+        }
+
+        List<Long> values = properties.stream()
+                .mapToLong(PropertyAssessment::getAssessedValue)
+                .boxed()
+                .sorted()
+                .toList();
+
+        double mean = values.stream().mapToLong(v -> v).average().orElse(0.0);
+        long median = calculateMedian(values);
+
+        return new Statistics(
+                values.size(),
+                0,
+                0,
+                0,
+                mean,
+                median
+        );
+    }
+
     private static long calculateMedian(List<Long> sorted) {
         int size = sorted.size();
         if (size % 2 == 0) {
