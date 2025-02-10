@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Scanner;
 
+import static main.java.PrintReport.printHoodStats;
+import static main.java.PrintReport.printClassStats;
+
 public class Main {
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -23,32 +26,19 @@ public class Main {
                 assessments.addAssessment(new PropertyAssessment(row));
             }
 
-            // Print city-wide statistics
-            PrintReport.printStatistics(
-                    "Descriptive statistics of all property assessments",
-                    assessments.getCityStatistics()
-            );
+            // Neighbourhood analysis
+            System.out.print("Please enter a neighbourhood name: ");
+            String hoodName = scanner.nextLine();
+            Neighbourhood hood = assessments.getNeighbourhood(hoodName);
 
-            // Find property by account number
-            System.out.print("\nFind a property assessment by account number: ");
-            String accountNumber = scanner.nextLine();
-            PrintReport.printPropertyAssessment(
-                    assessments.findByAccountNumber(accountNumber)
-            );
+            printHoodStats(hoodName, hood);
 
-            // Get neighbourhood statistics
-            System.out.print("\nNeighbourhood: ");
-            String neighbourhoodName = scanner.nextLine();
-            Neighbourhood hood = assessments.getNeighbourhood(neighbourhoodName);
+            // Assessment class analysis
+            System.out.print("\nPlease enter an assessment class: ");
+            String className = scanner.nextLine();
+            Statistics classStats = assessments.getAssessmentClassStatistics(className);
 
-            if (hood != null) {
-                PrintReport.printStatistics(
-                        "Statistics of " + neighbourhoodName + " neighbourhood",
-                        hood.getStatistics()
-                );
-            } else {
-                System.out.println("Neighbourhood not found.");
-            }
+            printClassStats(className, classStats);
 
         } catch (IOException e) {
             System.out.println("Error reading file: " + e.getMessage());
