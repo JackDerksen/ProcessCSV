@@ -75,8 +75,10 @@ public class PropertyAssessment implements Comparable<PropertyAssessment> {
     public String[] getAssessmentClasses() { return assessmentClasses; }
 
     public double getAssessmentClassPercentage(String className) {
+        if (className == null) return 0.0;
+
         for (int i = 0; i < assessmentClasses.length; i++) {
-            if (className.equals(assessmentClasses[i])) {
+            if (className.equalsIgnoreCase(assessmentClasses[i])) {
                 return assessmentClassPercentages[i];
             }
         }

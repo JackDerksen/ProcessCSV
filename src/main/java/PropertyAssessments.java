@@ -31,7 +31,12 @@ public class PropertyAssessments {
     }
 
     public Neighbourhood getNeighbourhood(String name) {
-        return neighbourhoods.get(name);
+        if (name == null) return null;
+        return neighbourhoods.entrySet().stream()
+                .filter(entry -> entry.getKey().equalsIgnoreCase(name))
+                .map(Map.Entry::getValue)
+                .findFirst()
+                .orElse(null);
     }
 
     public Map<String, Object> getCityStatistics() {
