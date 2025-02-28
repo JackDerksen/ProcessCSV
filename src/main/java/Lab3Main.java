@@ -23,7 +23,7 @@ public class Lab3Main {
             }
 
             // Neighbourhood analysis
-            System.out.print("Please enter a neighbourhood name: ");
+            System.out.print("\nPlease enter a neighbourhood name: ");
             String hoodName = scanner.nextLine();
 
             Neighbourhood hood = assessments.getNeighbourhood(hoodName);

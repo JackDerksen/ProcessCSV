@@ -9,11 +9,12 @@ public class PropertyAssessment implements Comparable<PropertyAssessment> {
     private final Location location;
     private final String[] assessmentClasses;
     private final double[] assessmentClassPercentages;
+    private final String ward;
 
     public PropertyAssessment(String accountNumber, Address address,
                               String neighbourhood, long assessedValue,
                               Location location, String[] assessmentClasses,
-                              double[] assessmentClassPercentages) {
+                              double[] assessmentClassPercentages, String ward) {
         this.accountNumber = accountNumber;
         this.address = address;
         this.neighbourhood = neighbourhood;
@@ -21,6 +22,7 @@ public class PropertyAssessment implements Comparable<PropertyAssessment> {
         this.location = location;
         this.assessmentClasses = assessmentClasses;
         this.assessmentClassPercentages = assessmentClassPercentages;
+        this.ward = ward;
     }
 
     public PropertyAssessment(String[] data) {
@@ -31,6 +33,7 @@ public class PropertyAssessment implements Comparable<PropertyAssessment> {
                 data[3]  // streetName
         );
         this.neighbourhood = data[6];
+        this.ward = data[7];
         this.assessedValue = parseAssessedValue(data[8]);
         this.location = new Location(
                 Double.parseDouble(data[9]),  // latitude
@@ -73,6 +76,7 @@ public class PropertyAssessment implements Comparable<PropertyAssessment> {
     public long getAssessedValue() { return assessedValue; }
     public Location getLocation() { return location; }
     public String[] getAssessmentClasses() { return assessmentClasses; }
+    public String getWard() { return ward; }
 
     public double getAssessmentClassPercentage(String className) {
         if (className == null) return 0.0;
