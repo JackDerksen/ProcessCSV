@@ -49,6 +49,17 @@ public class PrintReport {
         }
     }
 
+    // Print neighborhood statistics - simplified for Lab3Main
+    public static void printSimpleHoodStats(String hoodName, Map<String, Object> stats) {
+        if (stats.get("count") != null && (Integer)stats.get("count") > 0) {
+            System.out.println("There are " + stats.get("count") + " properties in " + hoodName);
+            System.out.printf("The mean value is $%,.2f%n", stats.get("mean"));
+            System.out.printf("The median value is $%,d%n", stats.get("median"));
+        } else {
+            System.out.println("Sorry, can't find data for " + hoodName);
+        }
+    }
+
     // Print assessment class statistics
     public static void printClassStats(String className, Map<String, Object> stats) {
         if (stats.get("count") != null && (Integer)stats.get("count") > 0) {
@@ -56,6 +67,17 @@ public class PrintReport {
             System.out.printf("The min value is $%,d%n", stats.get("min"));
             System.out.printf("The max value is $%,d%n", stats.get("max"));
             System.out.printf("The range is $%,d%n", stats.get("range"));
+        } else {
+            System.out.println("Sorry, no properties found for assessment class: " + className);
+        }
+    }
+
+    // Print assessment class statistics - simplified for Lab3Main
+    public static void printSimpleClassStats(String className, Map<String, Object> stats) {
+        if (stats.get("count") != null && (Integer)stats.get("count") > 0) {
+            System.out.println("There are " + stats.get("count") + " " + className + " properties in Edmonton");
+            System.out.printf("The mean value is $%,.2f%n", stats.get("mean"));
+            System.out.printf("The median value is $%,d%n", stats.get("median"));
         } else {
             System.out.println("Sorry, no properties found for assessment class: " + className);
         }

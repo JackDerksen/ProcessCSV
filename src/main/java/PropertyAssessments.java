@@ -20,7 +20,7 @@ public class PropertyAssessments {
     }
 
     public List<PropertyAssessment> getAssessments() {
-        return assessments;
+        return new ArrayList<>(assessments); // Return a copy to prevent modification
     }
 
     public PropertyAssessment findByAccountNumber(String accountNumber) {

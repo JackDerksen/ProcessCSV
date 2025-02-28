@@ -1,10 +1,10 @@
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
 
 public class CalculateStatistics {
-    // Calculate and return all statistics in a map
+    // Calculate all statistics for a collection of property assessments
     public static Map<String, Object> calculateAllStats(Collection<PropertyAssessment> properties) {
         Map<String, Object> stats = new HashMap<>();
 
@@ -39,7 +39,7 @@ public class CalculateStatistics {
         return stats;
     }
 
-    // Calculate and return only neighborhood statistics (count, mean, median)
+    // Calculate neighbourhood statistics with mean and median
     public static Map<String, Object> calculateNeighbourhoodStats(Collection<PropertyAssessment> properties) {
         Map<String, Object> stats = new HashMap<>();
 
@@ -63,7 +63,7 @@ public class CalculateStatistics {
         return stats;
     }
 
-    // Calculate and return only assessment class statistics (count, min, max, range)
+    // Calculate assessment class statistics including mean and median for Lab3Main
     public static Map<String, Object> calculateAssessmentClassStats(Collection<PropertyAssessment> allProperties, String className) {
         // Filter properties where the percentage for this class is > 0
         List<PropertyAssessment> properties = allProperties.stream()
@@ -74,9 +74,8 @@ public class CalculateStatistics {
 
         if (properties.isEmpty()) {
             stats.put("count", 0);
-            stats.put("min", 0L);
-            stats.put("max", 0L);
-            stats.put("range", 0L);
+            stats.put("mean", 0.0);
+            stats.put("median", 0L);
             return stats;
         }
 
@@ -86,13 +85,9 @@ public class CalculateStatistics {
                 .sorted()
                 .toList();
 
-        long min = values.getFirst();
-        long max = values.getLast();
-
         stats.put("count", values.size());
-        stats.put("min", min);
-        stats.put("max", max);
-        stats.put("range", max - min);
+        stats.put("mean", values.stream().mapToLong(v -> v).average().orElse(0.0));
+        stats.put("median", calculateMedian(values));
 
         return stats;
     }

@@ -24,7 +24,7 @@ public class Lab2Main {
 
             // 1. Print statistics for all properties in the CSV file
             Map<String, Object> cityStats = CalculateStatistics.calculateAllStats(assessments.getAssessments());
-            PrintReport.printAllStats("Assessment of Edmonton Properties", cityStats);
+            PrintReport.printAllStats("\nAssessment of Edmonton Properties", cityStats);
 
             // 2. Get a specific property by account number
             System.out.print("\nPlease enter an account number: ");

@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class Neighbourhood {
     private final String name;
@@ -21,5 +22,23 @@ public class Neighbourhood {
 
     public Map<String, Object> getStatistics() {
         return CalculateStatistics.calculateNeighbourhoodStats(properties);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s (%d properties)", name, properties.size());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Neighbourhood that = (Neighbourhood) o;
+        return Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

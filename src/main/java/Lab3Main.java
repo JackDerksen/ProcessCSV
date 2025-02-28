@@ -28,9 +28,9 @@ public class Lab3Main {
 
             Neighbourhood hood = assessments.getNeighbourhood(hoodName);
             if (hood != null) {
-                // Create a HoodAssessment for the neighborhood
-                HoodAssessment hoodAssessment = new HoodAssessment(hood);
-                hoodAssessment.printSummary();
+                // Get simple statistics for neighbourhood
+                Map<String, Object> hoodStats = hood.getStatistics();
+                PrintReport.printSimpleHoodStats(hoodName, hoodStats);
             } else {
                 System.out.println("Sorry, can't find data for " + hoodName);
             }
@@ -40,13 +40,15 @@ public class Lab3Main {
             String className = scanner.nextLine();
 
             Map<String, Object> classStats = assessments.getAssessmentClassStatistics(className);
-            PrintReport.printClassStats(className, classStats);
+            PrintReport.printSimpleClassStats(className, classStats);
 
         } catch (IOException e) {
             System.out.println("Error reading file: " + e.getMessage());
         } catch (Exception e) {
             System.out.println("An error occurred: " + e.getMessage());
             e.printStackTrace();
+        } finally {
+            scanner.close();
         }
     }
 }
