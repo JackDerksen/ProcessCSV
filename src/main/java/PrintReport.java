@@ -21,8 +21,8 @@ public class PrintReport {
 
         // Print a formatted property report
         System.out.printf("""
-            Assessment of property %s
-            -----------------------------------------------------
+            Assessment of property #%s
+            -------------------------------
             Address: %s
             Assessed value: $%,d
             Assessment class: %s
@@ -65,7 +65,7 @@ public class PrintReport {
     public static void printAllStats(String title, Map<String, Object> stats) {
         System.out.printf("""
             %s
-            %s
+            -------------------------------
             n: %d
             Min: $%,d
             Max: $%,d
@@ -73,7 +73,6 @@ public class PrintReport {
             Mean: $%,.2f
             Median: $%,d%n""",
                 title,
-                "-".repeat(title.length()),
                 stats.get("count"),
                 stats.get("min"),
                 stats.get("max"),

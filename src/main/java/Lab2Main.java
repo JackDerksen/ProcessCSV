@@ -24,8 +24,7 @@ public class Lab2Main {
 
             // 1. Print statistics for all properties in the CSV file
             Map<String, Object> cityStats = CalculateStatistics.calculateAllStats(assessments.getAssessments());
-            System.out.println("\n===== CITY-WIDE PROPERTY STATISTICS =====");
-            PrintReport.printAllStats("Edmonton Property Assessments", cityStats);
+            PrintReport.printAllStats("Assessment of Edmonton Properties", cityStats);
 
             // 2. Get a specific property by account number
             System.out.print("\nPlease enter an account number: ");
@@ -33,7 +32,6 @@ public class Lab2Main {
             PropertyAssessment property = assessments.findByAccountNumber(accountNumber);
 
             if (property != null) {
-                System.out.println("\n===== PROPERTY DETAILS =====");
                 PrintReport.printPropertyAssessment(property);
             } else {
                 System.out.println("Property not found with account number: " + accountNumber);
@@ -45,7 +43,6 @@ public class Lab2Main {
             Neighbourhood hood = assessments.getNeighbourhood(hoodName);
 
             if (hood != null) {
-                System.out.println("\n===== NEIGHBOURHOOD STATISTICS =====");
                 HoodAssessment hoodAssessment = new HoodAssessment(hood);
                 hoodAssessment.printSummary();
             } else {

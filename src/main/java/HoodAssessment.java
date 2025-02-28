@@ -43,7 +43,8 @@ public class HoodAssessment {
 
     // Print to console method
     public void printSummary() {
-        System.out.println("Neighbourhood: " + name);
+        System.out.println("Assessment of neighbourhood: " + name);
+        System.out.println("-------------------------------");
         System.out.println("Number of properties: " + propertyCount);
         System.out.printf("Mean assessed value: $%,.2f%n", meanValue);
         System.out.printf("Median assessed value: $%,d%n", medianValue);
