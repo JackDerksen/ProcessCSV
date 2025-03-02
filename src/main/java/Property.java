@@ -24,8 +24,8 @@ public class Property {
         this.accountNumber = data[0];
         this.suite = data[1];
         this.houseNumber = data[2];
-        this.streetName =data[3];
-        this.neighbourhood =data[6];
+        this.streetName = data[3];
+        this.neighbourhood = data[6];
         this.latitude = Double.parseDouble(data[9]);
         this.longitude = Double.parseDouble(data[10]);
     }
@@ -45,7 +45,13 @@ public class Property {
         if (!suite.isEmpty()) {
             address.append("Suite ").append(suite).append(", ");
         }
-        address.append(houseNumber).append(" ").append(streetName);
+
+        // Only add house number if it's not empty
+        if (!houseNumber.isEmpty()) {
+            address.append(houseNumber).append(" ");
+        }
+
+        address.append(streetName);
         return address.toString();
     }
 
