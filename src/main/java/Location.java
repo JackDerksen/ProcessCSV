@@ -1,16 +1,4 @@
-import java.util.Objects;
-
-public class Location {
-    private final double latitude;
-    private final double longitude;
-
-    public Location(double latitude, double longitude) {
-        this.latitude = latitude;
-        this.longitude = longitude;
-    }
-
-    public double getLatitude() { return latitude; }
-    public double getLongitude() { return longitude; }
+public record Location(double latitude, double longitude) {
 
     @Override
     public String toString() {
@@ -26,8 +14,4 @@ public class Location {
                 Double.compare(location.longitude, longitude) == 0;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(latitude, longitude);
-    }
 }

@@ -65,7 +65,7 @@ public class InfographicData {
                 if (className != null && !className.isEmpty() &&
                         property.getAssessmentClassPercentage(className) > 0) {
 
-                    valuesByType.computeIfAbsent(className, k -> new ArrayList<>())
+                    valuesByType.computeIfAbsent(className, _ -> new ArrayList<>())
                             .add(property.getAssessedValue());
                 }
             }
@@ -115,7 +115,7 @@ public class InfographicData {
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
                         Map.Entry::getValue,
-                        (e1, e2) -> e1,
+                        (e1, _) -> e1,
                         LinkedHashMap::new
                 ));
     }
@@ -132,7 +132,7 @@ public class InfographicData {
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
                         Map.Entry::getValue,
-                        (e1, e2) -> e1,
+                        (e1, _) -> e1,
                         LinkedHashMap::new
                 ));
     }
@@ -146,7 +146,7 @@ public class InfographicData {
         for (PropertyAssessment property : assessments.getAssessments()) {
             String ward = getPropertyWard(property);
             if (ward != null && !ward.isEmpty()) {
-                propertiesByWard.computeIfAbsent(ward, k -> new ArrayList<>())
+                propertiesByWard.computeIfAbsent(ward, _ -> new ArrayList<>())
                         .add(property);
             }
         }

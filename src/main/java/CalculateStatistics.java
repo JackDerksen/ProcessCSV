@@ -2,6 +2,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 public class CalculateStatistics {
     public static Map<String, Object> calculateAssessmentClassStats(
@@ -20,7 +21,11 @@ public class CalculateStatistics {
             return stats;
         }
 
-        List<Long> values = properties.stream()
+        return getStringObjectMap(stats, properties.stream(), properties);
+    }
+
+    private static Map<String, Object> getStringObjectMap(Map<String, Object> stats, Stream<PropertyAssessment> stream, List<PropertyAssessment> properties) {
+        List<Long> values = stream
                 .mapToLong(PropertyAssessment::getAssessedValue)
                 .boxed()
                 .sorted()
@@ -88,17 +93,7 @@ public class CalculateStatistics {
             return stats;
         }
 
-        List<Long> values = properties.stream()
-                .mapToLong(PropertyAssessment::getAssessedValue)
-                .boxed()
-                .sorted()
-                .toList();
-
-        stats.put("count", values.size());
-        stats.put("mean", values.stream().mapToLong(v -> v).average().orElse(0.0));
-        stats.put("median", calculateMedian(values));
-
-        return stats;
+        return getStringObjectMap(stats, properties.stream(), (List<PropertyAssessment>) properties);
     }
 
     // Helper method to calculate median

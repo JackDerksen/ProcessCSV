@@ -38,46 +38,32 @@ public class PrintReport {
         );
     }
 
-    // Print neighborhood statistics
+    // Print neighborhood statistics (removed duplicate method)
     public static void printHoodStats(String hoodName, Map<String, Object> stats) {
-        if (stats.get("count") != null && (Integer)stats.get("count") > 0) {
-            System.out.println("There are " + stats.get("count") + " properties in " + hoodName);
-            System.out.printf("The mean value is $%,.2f%n", stats.get("mean"));
-            System.out.printf("The median value is $%,d%n", stats.get("median"));
+        if (stats.get("count") != null && ((Number)stats.get("count")).intValue() > 0) {
+            System.out.println("There are " + ((Number)stats.get("count")).intValue() + " properties in " + hoodName);
+            System.out.printf("The mean value is $%,.2f%n", ((Number)stats.get("mean")).doubleValue());
+            System.out.printf("The median value is $%,d%n", ((Number)stats.get("median")).longValue());
         } else {
             System.out.println("Sorry, can't find data for " + hoodName);
         }
     }
 
-    // Print neighborhood statistics - simplified for Lab3Main
-    public static void printSimpleHoodStats(String hoodName, Map<String, Object> stats) {
-        if (stats.get("count") != null && (Integer)stats.get("count") > 0) {
-            System.out.println("There are " + stats.get("count") + " properties in " + hoodName);
-            System.out.printf("The mean value is $%,.2f%n", stats.get("mean"));
-            System.out.printf("The median value is $%,d%n", stats.get("median"));
-        } else {
-            System.out.println("Sorry, can't find data for " + hoodName);
-        }
-    }
+    // Print assessment class statistics with different formats
+    public static void printClassStats(String className, Map<String, Object> stats, boolean includeMinMaxRange) {
+        if (stats.get("count") != null && ((Number)stats.get("count")).intValue() > 0) {
+            System.out.println("There are " + ((Number)stats.get("count")).intValue() + " " + className + " properties in Edmonton");
 
-    // Print assessment class statistics
-    public static void printClassStats(String className, Map<String, Object> stats) {
-        if (stats.get("count") != null && (Integer)stats.get("count") > 0) {
-            System.out.println("There are " + stats.get("count") + " " + className + " properties in Edmonton");
-            System.out.printf("The min value is $%,d%n", stats.get("min"));
-            System.out.printf("The max value is $%,d%n", stats.get("max"));
-            System.out.printf("The range is $%,d%n", stats.get("range"));
-        } else {
-            System.out.println("Sorry, no properties found for assessment class: " + className);
-        }
-    }
-
-    // Print assessment class statistics - simplified for Lab3Main
-    public static void printSimpleClassStats(String className, Map<String, Object> stats) {
-        if (stats.get("count") != null && (Integer)stats.get("count") > 0) {
-            System.out.println("There are " + stats.get("count") + " " + className + " properties in Edmonton");
-            System.out.printf("The mean value is $%,.2f%n", stats.get("mean"));
-            System.out.printf("The median value is $%,d%n", stats.get("median"));
+            // If detailed stats are requested, include min, max, and range
+            if (includeMinMaxRange && stats.containsKey("min") && stats.containsKey("max") && stats.containsKey("range")) {
+                System.out.printf("The min value is $%,d%n", ((Number)stats.get("min")).longValue());
+                System.out.printf("The max value is $%,d%n", ((Number)stats.get("max")).longValue());
+                System.out.printf("The range is $%,d%n", ((Number)stats.get("range")).longValue());
+            } else if (stats.containsKey("mean") && stats.containsKey("median")) {
+                // Otherwise just show mean and median
+                System.out.printf("The mean value is $%,.2f%n", ((Number)stats.get("mean")).doubleValue());
+                System.out.printf("The median value is $%,d%n", ((Number)stats.get("median")).longValue());
+            }
         } else {
             System.out.println("Sorry, no properties found for assessment class: " + className);
         }
@@ -95,12 +81,12 @@ public class PrintReport {
             Mean: $%,.2f
             Median: $%,d%n""",
                 title,
-                stats.get("count"),
-                stats.get("min"),
-                stats.get("max"),
-                stats.get("range"),
-                stats.get("mean"),
-                stats.get("median")
+                ((Number)stats.get("count")).intValue(),
+                ((Number)stats.get("min")).longValue(),
+                ((Number)stats.get("max")).longValue(),
+                ((Number)stats.get("range")).longValue(),
+                ((Number)stats.get("mean")).doubleValue(),
+                ((Number)stats.get("median")).longValue()
         );
     }
 }

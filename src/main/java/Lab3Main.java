@@ -30,7 +30,7 @@ public class Lab3Main {
             if (hood != null) {
                 // Get simple statistics for neighbourhood
                 Map<String, Object> hoodStats = hood.getStatistics();
-                PrintReport.printSimpleHoodStats(hoodName, hoodStats);
+                PrintReport.printHoodStats(hoodName, hoodStats);
             } else {
                 System.out.println("Sorry, can't find data for " + hoodName);
             }
@@ -40,7 +40,7 @@ public class Lab3Main {
             String className = scanner.nextLine();
 
             Map<String, Object> classStats = assessments.getAssessmentClassStatistics(className);
-            PrintReport.printSimpleClassStats(className, classStats);
+            PrintReport.printClassStats(className, classStats, false);
 
         } catch (IOException e) {
             System.out.println("Error reading file: " + e.getMessage());
