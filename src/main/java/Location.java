@@ -1,3 +1,8 @@
+/**
+ * Immutable record representing a geographic coordinate with latitude and
+ * longitude values. Just provides string formatting and equality methods.
+ */
+
 public record Location(double latitude, double longitude) {
 
     @Override

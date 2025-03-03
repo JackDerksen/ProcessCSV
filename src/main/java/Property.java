@@ -1,3 +1,8 @@
+/**
+ * Represents a physical property with identification and location
+ * information. Provides methods to construct formatted address strings.
+ */
+
 public class Property {
     private final String accountNumber;
     private final String suite;

@@ -1,5 +1,9 @@
 import java.util.Objects;
-import java.util.Arrays;
+
+/**
+ * Represents a (single) property assessment with location, valuation, and
+ * classification details. Implements Comparable for value-based sorting.
+ */
 
 public class PropertyAssessment implements Comparable<PropertyAssessment> {
     private final String accountNumber;
@@ -29,7 +33,7 @@ public class PropertyAssessment implements Comparable<PropertyAssessment> {
         this.accountNumber = data[0];
         this.address = new Address(
                 data[1], // suite
-                data[2],              // houseNumber
+                data[2], // houseNumber
                 data[3]  // streetName
         );
         this.neighbourhood = data[6];

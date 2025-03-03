@@ -2,6 +2,14 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * Utility class for formatting and printing property assessment reports,
+ * including individual properties, neighborhood statistics, and class
+ * statistics. Handles all the different formatting needs for, say,
+ * lab 2 output vs lab 3 outputs. Very gross-looking, but gets the job
+ * done!
+ */
+
 public class PrintReport {
     // Print complete property assessment details
     public static void printPropertyAssessment(PropertyAssessment assessment) {

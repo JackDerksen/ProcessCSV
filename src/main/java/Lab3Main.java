@@ -3,6 +3,11 @@ import java.nio.file.Path;
 import java.util.Map;
 import java.util.Scanner;
 
+/**
+ * Main application for property assessment analysis (Lab 3). Loads CSV data
+ * and performs neighborhood and assessment class analysis.
+ */
+
 public class Lab3Main {
     private static final Scanner scanner = new Scanner(System.in);
 

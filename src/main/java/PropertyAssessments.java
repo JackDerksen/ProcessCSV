@@ -3,6 +3,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Collection class for managing multiple property assessments, with methods
+ * for searching, grouping by neighborhood, and calculating statistics.
+ */
+
 public class PropertyAssessments {
     private final List<PropertyAssessment> assessments;
     private final Map<String, Neighbourhood> neighbourhoods;

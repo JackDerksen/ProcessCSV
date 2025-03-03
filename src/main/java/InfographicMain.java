@@ -3,6 +3,12 @@ import java.nio.file.Path;
 import java.util.Map;
 import java.util.Scanner;
 
+/**
+ * Main application for property assessment infographics. Loads CSV data
+ * and displays property type distribution, average values by type, and
+ * ward value rankings.
+ */
+
 public class InfographicMain {
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -41,7 +47,7 @@ public class InfographicMain {
                 System.out.printf("%s: $%,.2f\n", entry.getKey(), entry.getValue());
             }
 
-            // 3. Ward Analysis
+            // 3. Ward Analysis (5 highest and lowest valued)
             System.out.println("\n===== TOP 5 HIGHEST VALUED WARDS =====");
             Map<String, Double> highestWards = infographicData.getHighestValuedWards(5);
             for (Map.Entry<String, Double> entry : highestWards.entrySet()) {

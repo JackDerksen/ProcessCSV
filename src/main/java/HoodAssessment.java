@@ -1,5 +1,11 @@
 import java.util.Map;
 
+/**
+ * Represents statistical assessment data for a neighborhood, including
+ * property counts, mean/median values, and value ranges. Provides
+ * formatting for console output.
+ */
+
 public class HoodAssessment {
     private final String name;
     private final int propertyCount;
@@ -41,7 +47,7 @@ public class HoodAssessment {
     public long getMaxValue() { return maxValue; }
     public long getValueRange() { return valueRange; }
 
-    // Print to console method
+    // Formatted printing of the stats
     public void printSummary() {
         System.out.println("Assessment of neighbourhood: " + name);
         System.out.println("-------------------------------");

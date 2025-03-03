@@ -5,6 +5,11 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Utility class for parsing CSV files, handling special cases like
+ * commas within parentheses to ensure correct field splitting.
+ */
+
 public class ParseCSV {
     public static String[][] readData(Path filePath) throws IOException {
         List<String[]> dataList = new ArrayList<>();

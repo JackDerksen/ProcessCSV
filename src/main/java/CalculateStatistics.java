@@ -4,6 +4,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
+/**
+ * Utility class for calculating statistical measures (mean, median, etc.)
+ * on collections of property assessments, including filtering by class name.
+ */
+
 public class CalculateStatistics {
     public static Map<String, Object> calculateAssessmentClassStats(
             Collection<PropertyAssessment> allProperties, String className) {
@@ -24,6 +29,7 @@ public class CalculateStatistics {
         return getStringObjectMap(stats, properties.stream(), properties);
     }
 
+    // Helper for mapping count, mean, and median
     private static Map<String, Object> getStringObjectMap(Map<String, Object> stats, Stream<PropertyAssessment> stream, List<PropertyAssessment> properties) {
         List<Long> values = stream
                 .mapToLong(PropertyAssessment::getAssessedValue)
@@ -38,6 +44,7 @@ public class CalculateStatistics {
         return stats;
     }
 
+    // Helper to check assessment classes
     private static boolean hasClassIgnoreCase(PropertyAssessment property, String className) {
         for (String cls : property.getAssessmentClasses()) {
             if (cls != null && cls.equalsIgnoreCase(className)) {
@@ -96,7 +103,7 @@ public class CalculateStatistics {
         return getStringObjectMap(stats, properties.stream(), (List<PropertyAssessment>) properties);
     }
 
-    // Helper method to calculate median
+    // Helper method to calculate median (mean is an existing, standard method)
     private static long calculateMedian(List<Long> sorted) {
         int size = sorted.size();
         if (size % 2 == 0) {

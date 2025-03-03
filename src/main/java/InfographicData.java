@@ -18,10 +18,7 @@ public class InfographicData {
         this.assessments = assessments;
     }
 
-    /**
-     * Get the distribution of property types across the city
-     * @return Map of property type to count
-     */
+    // Get the distribution of property types across the city
     public Map<String, Integer> getPropertyTypeDistribution() {
         Map<String, Integer> distribution = new HashMap<>();
 
@@ -51,10 +48,7 @@ public class InfographicData {
         return distribution;
     }
 
-    /**
-     * Get average property values by property type
-     * @return Map of property type to average value
-     */
+    // Get average property values by property type
     public Map<String, Double> getAverageValueByPropertyType() {
         Map<String, Double> averageValues = new HashMap<>();
         Map<String, List<Long>> valuesByType = new HashMap<>();
@@ -83,10 +77,7 @@ public class InfographicData {
         return averageValues;
     }
 
-    /**
-     * Get ward statistics - average property values by ward
-     * @return Map of ward name to average property value, sorted by value
-     */
+    // Get ward statistics - average property values by ward
     public Map<String, Double> getWardAverageValues() {
         Map<String, List<PropertyAssessment>> propertiesByWard = groupPropertiesByWard();
 
@@ -103,11 +94,7 @@ public class InfographicData {
         return wardAverages;
     }
 
-    /**
-     * Get the highest valued wards
-     * @param limit Number of top wards to return
-     * @return Map of ward name to average property value, sorted descending by value
-     */
+    // Get the highest valued wards
     public Map<String, Double> getHighestValuedWards(int limit) {
         return getWardAverageValues().entrySet().stream()
                 .sorted(Map.Entry.<String, Double>comparingByValue().reversed())
@@ -120,11 +107,8 @@ public class InfographicData {
                 ));
     }
 
-    /**
-     * Get the lowest valued wards
-     * @param limit Number of bottom wards to return
-     * @return Map of ward name to average property value, sorted ascending by value
-     */
+
+    // Get the lowest valued wards
     public Map<String, Double> getLowestValuedWards(int limit) {
         return getWardAverageValues().entrySet().stream()
                 .sorted(Map.Entry.comparingByValue())
@@ -137,9 +121,7 @@ public class InfographicData {
                 ));
     }
 
-    /**
-     * Helper method to group properties by ward
-     */
+    // Helper method to group properties by ward
     private Map<String, List<PropertyAssessment>> groupPropertiesByWard() {
         Map<String, List<PropertyAssessment>> propertiesByWard = new HashMap<>();
 
@@ -154,9 +136,7 @@ public class InfographicData {
         return propertiesByWard;
     }
 
-    /**
-     * Helper method to extract ward from a property
-     */
+    // Helper method to extract ward from a property
     private String getPropertyWard(PropertyAssessment property) {
         return property.getWard();
     }

@@ -3,6 +3,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * Represents a neighborhood containing property assessments, with methods
+ * to calculate statistics and manage properties within the neighborhood.
+ */
+
 public class Neighbourhood {
     private final String name;
     private final List<PropertyAssessment> properties;

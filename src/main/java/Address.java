@@ -1,5 +1,10 @@
 import java.util.Objects;
 
+/**
+ * Represents a physical address with suite, house number, and street name.
+ * Provides string representation and equality methods for address comparison.
+ */
+
 public class Address {
     private final String suite;
     private final String houseNumber;
